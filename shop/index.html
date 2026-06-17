@@ -7,11 +7,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .card-sizes { display:flex; gap:6px; margin-top:10px; justify-content:center; }
+    .card-size-btn {
+      font-family:'Oswald',sans-serif; font-size:0.7rem; letter-spacing:0.06em;
+      padding:6px 12px; min-height:36px; border-radius:4px; border:1px solid var(--badge-border);
+      background:var(--badge-bg); color:#aaa; cursor:pointer; transition:all .2s;
+      touch-action:manipulation;
+    }
+    .card-size-btn.active, .card-size-btn:hover {
+      background:var(--accent); border-color:var(--accent); color:#fff;
+    }
+  </style>
 </head>
 <body>
 
 <nav class="navbar">
-  <img src="images/fe36d06e-9b14-4659-8582-09d3633e5830.png" alt="Tedd Grooming" class="nav-logo">
+  <img src="images/tedd-logo.png.png" alt="Tedd Grooming" class="nav-logo">
   <div class="nav-right">
     <span class="nav-tagline">GROOMING FOR PERFORMANCE</span>
   </div>
@@ -25,100 +37,138 @@
 
 <main class="product-grid">
 
-  <a class="card" href="products/pomade-controlhold.html"
-     style="--accent:#c0392b;--glow:rgba(192,57,43,0.14);--badge-bg:rgba(192,57,43,0.08);--badge-border:rgba(192,57,43,0.28)">
-    <img src="images/32841515-01bf-4bf1-8d44-b30bb81dfaf5.png" alt="Pomade Controlhold" class="card-img">
-    <div class="card-content">
-      <p class="card-name">Pomade Controlhold</p>
-      <p class="card-meta">Strong Hold · 60g / 150g</p>
-      <span class="card-badge">Grapeberry Scent</span>
-    </div>
-  </a>
+  <!-- ── Row 1: Clay · Hair Mousse · Grooming Fixer ── -->
 
-  <a class="card" href="products/moisturizing-fixer.html"
-     style="--accent:#a83232;--glow:rgba(168,50,50,0.14);--badge-bg:rgba(168,50,50,0.08);--badge-border:rgba(168,50,50,0.28)">
-    <img src="images/a2cc4d14-860e-4511-87bb-9db9bef8e6eb.png" alt="Moisturizing Fixer" class="card-img">
+  <a class="card" href="products/styling-clay.html"
+     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.14);--badge-bg:rgba(200,168,75,0.08);--badge-border:rgba(200,168,75,0.28)">
+    <img src="images/styling-clay-60g.png.png" alt="Firm Hold Styling Clay" class="card-img">
     <div class="card-content">
-      <p class="card-name">Moisturizing Fixer</p>
-      <p class="card-meta">Medium Hold · 150ml</p>
-      <span class="card-badge">Appleberry Scent</span>
+      <p class="card-name">Firm Hold Styling Clay</p>
+      <p class="card-meta">Firm Hold · Natural Finish</p>
+      <span class="card-badge">Vanilla Musk Scent</span>
+      <div class="card-sizes">
+        <button class="card-size-btn active" onclick="cardSize(event,'images/styling-clay-60g.png.png',this)">60g</button>
+        <button class="card-size-btn" onclick="cardSize(event,'images/styling-clay-120g.png.png',this)">120g</button>
+      </div>
     </div>
   </a>
 
   <a class="card" href="products/hair-mousse.html"
-     style="--accent:#1abc9c;--glow:rgba(26,188,156,0.14);--badge-bg:rgba(26,188,156,0.08);--badge-border:rgba(26,188,156,0.28)">
-    <img src="images/70bbad07-83b6-4d82-b6f3-a2c5567d9991.png" alt="Hair Mousse" class="card-img">
+     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.14);--badge-bg:rgba(29,212,196,0.08);--badge-border:rgba(29,212,196,0.28)">
+    <img src="images/hair-mousse-160ml.png.png" alt="Hair Mousse" class="card-img">
     <div class="card-content">
       <p class="card-name">Hair Mousse</p>
-      <p class="card-meta">Firm Hold · 160ml</p>
+      <p class="card-meta">Medium Hold · Wet Finish</p>
       <span class="card-badge">Parfum Scent</span>
+      <div class="card-sizes">
+        <button class="card-size-btn active">160ml</button>
+      </div>
     </div>
   </a>
 
   <a class="card" href="products/grooming-fixer.html"
      style="--accent:#27ae60;--glow:rgba(39,174,96,0.14);--badge-bg:rgba(39,174,96,0.08);--badge-border:rgba(39,174,96,0.28)">
-    <img src="images/462a73c2-f65b-4913-a587-27df454a99d2.png" alt="Grooming Fixer" class="card-img">
+    <img src="images/grooming-fixer-120ml.png.png" alt="Grooming Fixer" class="card-img">
     <div class="card-content">
       <p class="card-name">Grooming Fixer</p>
-      <p class="card-meta">Medium Hold · 120ml / 250ml</p>
+      <p class="card-meta">Light Hold · Natural Finish</p>
       <span class="card-badge">Apple Spearmint</span>
+      <div class="card-sizes">
+        <button class="card-size-btn active" onclick="cardSize(event,'images/grooming-fixer-120ml.png.png',this)">120ml</button>
+        <button class="card-size-btn" onclick="cardSize(event,'images/grooming-fixer-250ml.png.png',this)">250ml</button>
+      </div>
     </div>
   </a>
 
-  <a class="card" href="products/styling-clay.html"
-     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.14);--badge-bg:rgba(200,168,75,0.08);--badge-border:rgba(200,168,75,0.28)">
-    <img src="images/c921deca-ea92-4028-ab86-0b530dcdecf9.png" alt="Firm Hold Styling Clay" class="card-img">
-    <div class="card-content">
-      <p class="card-name">Firm Hold Styling Clay</p>
-      <p class="card-meta">Firm Hold · 60g / 120g</p>
-      <span class="card-badge">Vanilla Musk Scent</span>
-    </div>
-  </a>
+  <!-- ── Row 2: Classic Pomade · Fixing Pomade Parfum · Fixing Pomade Mixfruit ── -->
 
-  <a class="card" href="products/mattifying-dust.html"
-     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.14);--badge-bg:rgba(200,168,75,0.08);--badge-border:rgba(200,168,75,0.28)">
-    <img src="images/ea352a82-1e84-4b88-945d-c55a7be7b91b.png" alt="Mattifying Dust" class="card-img">
+  <a class="card" href="products/pomade-controlhold.html"
+     style="--accent:#c0392b;--glow:rgba(192,57,43,0.14);--badge-bg:rgba(192,57,43,0.08);--badge-border:rgba(192,57,43,0.28)">
+    <img src="images/pomade-classic-60g.png.png" alt="Classic Pomade" class="card-img">
     <div class="card-content">
-      <p class="card-name">Mattifying Dust</p>
-      <p class="card-meta">Firm Hold · 25gm</p>
-      <span class="card-badge">Vanilla Scent</span>
-    </div>
-  </a>
-
-  <a class="card" href="products/hairspray.html"
-     style="--accent:#95a5a6;--glow:rgba(149,165,166,0.14);--badge-bg:rgba(149,165,166,0.08);--badge-border:rgba(149,165,166,0.28)">
-    <img src="images/82c2eacf-332f-4a9f-a4c7-10af9dc62db8.png" alt="Hair Spray" class="card-img">
-    <div class="card-content">
-      <p class="card-name">Hair Spray</p>
-      <p class="card-meta">Strong Hold · 420ml</p>
-      <span class="card-badge">Parfum Scent</span>
+      <p class="card-name">Classic Pomade</p>
+      <p class="card-meta">Control Hold · High Shine</p>
+      <span class="card-badge">Grapeberry Scent</span>
+      <div class="card-sizes">
+        <button class="card-size-btn active" onclick="cardSize(event,'images/pomade-classic-60g.png.png',this)">60g</button>
+        <button class="card-size-btn" onclick="cardSize(event,'images/pomade-classic-150g.png.png',this)">150g</button>
+      </div>
     </div>
   </a>
 
   <a class="card" href="products/fixing-pomade-parfum.html"
-     style="--accent:#3498db;--glow:rgba(52,152,219,0.14);--badge-bg:rgba(52,152,219,0.08);--badge-border:rgba(52,152,219,0.28)">
-    <img src="images/dad7d25c-169d-4307-a8ff-1471ea61b3c1.png" alt="Fixing Pomade Parfum" class="card-img">
+     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.14);--badge-bg:rgba(29,212,196,0.08);--badge-border:rgba(29,212,196,0.28)">
+    <img src="images/pomade-fiber-parfum-60g.png.png" alt="Fixing Pomade Parfum" class="card-img">
     <div class="card-content">
       <p class="card-name">Fixing Pomade Parfum</p>
-      <p class="card-meta">Strong Hold · 60g / 150g</p>
+      <p class="card-meta">Strong Hold · Medium Shine</p>
       <span class="card-badge">Parfum Scent</span>
+      <div class="card-sizes">
+        <button class="card-size-btn active" onclick="cardSize(event,'images/pomade-fiber-parfum-60g.png.png',this)">60g</button>
+        <button class="card-size-btn" onclick="cardSize(event,'images/pomade-fiber-parfum-150g.png.png',this)">150g</button>
+      </div>
     </div>
   </a>
 
   <a class="card" href="products/fixing-pomade-mixfruit.html"
      style="--accent:#e67e22;--glow:rgba(230,126,34,0.14);--badge-bg:rgba(230,126,34,0.08);--badge-border:rgba(230,126,34,0.28)">
-    <img src="images/d1096a0e-de73-4656-a3cc-78507b79cade.png" alt="Fixing Pomade Mixfruit" class="card-img">
+    <img src="images/pomade-fiber-mixfruit-60g.png.png" alt="Fixing Pomade Mixfruit" class="card-img">
     <div class="card-content">
       <p class="card-name">Fixing Pomade Mixfruit</p>
-      <p class="card-meta">Firm Hold · 60g / 150g</p>
+      <p class="card-meta">Medium Hold · Medium Shine</p>
       <span class="card-badge">Mix Fruit Scent</span>
+      <div class="card-sizes">
+        <button class="card-size-btn active" onclick="cardSize(event,'images/pomade-fiber-mixfruit-60g.png.png',this)">60g</button>
+        <button class="card-size-btn" onclick="cardSize(event,'images/pomade-fiber-mixfruit-150g.png.png',this)">150g</button>
+      </div>
+    </div>
+  </a>
+
+  <!-- ── Row 3: Moisturizing Fixer · Hair Spray · Mattifying Dust ── -->
+
+  <a class="card" href="products/moisturizing-fixer.html"
+     style="--accent:#c4527a;--glow:rgba(196,82,122,0.14);--badge-bg:rgba(196,82,122,0.08);--badge-border:rgba(196,82,122,0.28)">
+    <img src="images/moisturizing-fixer-150ml.png.png" alt="Moisturizing Fixer" class="card-img">
+    <div class="card-content">
+      <p class="card-name">Moisturizing Fixer</p>
+      <p class="card-meta">Silky · Wet Finish</p>
+      <span class="card-badge">Appleberry Scent</span>
+      <div class="card-sizes">
+        <button class="card-size-btn active">150ml</button>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="products/hairspray.html"
+     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.14);--badge-bg:rgba(29,212,196,0.08);--badge-border:rgba(29,212,196,0.28)">
+    <img src="images/hairspray-420ml.png.png" alt="Hair Spray" class="card-img">
+    <div class="card-content">
+      <p class="card-name">Hair Spray</p>
+      <p class="card-meta">Strong Hold · High Shine</p>
+      <span class="card-badge">Parfum Scent</span>
+      <div class="card-sizes">
+        <button class="card-size-btn active">420ml</button>
+      </div>
+    </div>
+  </a>
+
+  <a class="card" href="products/mattifying-dust.html"
+     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.14);--badge-bg:rgba(200,168,75,0.08);--badge-border:rgba(200,168,75,0.28)">
+    <img src="images/mattifying-dust-25g.png.png" alt="Mattifying Dust" class="card-img">
+    <div class="card-content">
+      <p class="card-name">Mattifying Dust</p>
+      <p class="card-meta">Firm Hold · Matte Finish</p>
+      <span class="card-badge">Vanilla Scent</span>
+      <div class="card-sizes">
+        <button class="card-size-btn active">25g</button>
+      </div>
     </div>
   </a>
 
 </main>
 
 <footer>
-  <img src="images/fe36d06e-9b14-4659-8582-09d3633e5830.png" alt="Tedd Grooming" class="footer-logo">
+  <img src="images/tedd-logo.png.png" alt="Tedd Grooming" class="footer-logo">
   <p>© 2025 Tedd Grooming Company. All rights reserved.</p>
 </footer>
 
@@ -130,6 +180,15 @@
       card.style.setProperty('--mouse-y', (e.clientY - r.top) + 'px');
     });
   });
+
+  function cardSize(e, src, btn) {
+    e.preventDefault();
+    e.stopPropagation();
+    const card = btn.closest('.card');
+    card.querySelector('.card-img').src = src;
+    card.querySelectorAll('.card-size-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
 </script>
 
 </body>
