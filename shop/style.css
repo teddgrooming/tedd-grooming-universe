@@ -56,17 +56,8 @@ a, button { -webkit-tap-highlight-color: transparent; }
   opacity: 0.92;
 }
 
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.nav-tagline {
-  font-size: 0.6rem;
-  color: var(--text-muted);
-  letter-spacing: 0.22em;
-  font-weight: 500;
+.navbar--centered {
+  justify-content: center;
 }
 
 .nav-back {
