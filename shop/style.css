@@ -104,7 +104,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 .hero-divider {
   width: 48px;
   height: 2px;
-  background: var(--red);
+  background: #c8a84b;
   margin: 0 auto;
 }
 
