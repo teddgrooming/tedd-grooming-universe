@@ -221,7 +221,7 @@
     },
     {
       text: "What's your biggest hair concern?",
-      options: ['Dryness & frizzy', 'Volume', 'Styling']
+      options: ['Dryness & frizzy', 'Oily & greasy', 'Volume', 'Styling']
     }
   ];
 
@@ -299,37 +299,43 @@
   // Products: 0=ClassicPomade 1=MoisturizingFixer 2=HairMousse 3=GroomingFixer
   //           4=StylingClay 5=Hairspray 6=MattifyingDust 7=FixingPomadeParf 8=FixingPomadeMix
   const WEIGHTS = [
-    // Q1: Hair thickness — Thin / Medium / Thick
+    // Q1: Hair thickness — Thin(0) / Medium(1) / Thick(2)
     [
       [1, 2, 0, 2, 0, 0, 0, 0, 1],  // Thin
       [1, 1, 1, 1, 1, 1, 1, 1, 1],  // Medium
       [0, 0, 2, 0, 3, 2, 3, 2, 1]   // Thick
     ],
-    // Q2: Natural behaviour — Straight & smooth / Wavy & frizzy / Curly or coily
+    // Q2: Natural behaviour — Straight(0) / Wavy(1) / Curly(2)
     [
       [2, 0, 0, 1, 1, 1, 1, 2, 2],  // Straight & smooth
       [0, 2, 1, 2, 1, 0, 0, 0, 1],  // Wavy & a bit frizzy
       [0, 3, 2, 1, 0, 0, 0, 0, 0]   // Curly or coily
     ],
-    // Q3: Hold — Soft & anti-frizz / Light & flexible / Medium / Strong all-day
+    // Q3: Hold — Soft(0) / Light(1) / Medium(2) / Strong(3)
+    // Soft = no hold → Moisturizing Fixer; Light → Grooming Fixer; Medium wet = Mousse;
+    // Strong → Clay / Hairspray / Pomades
     [
-      [0, 3, 0, 2, 0, 0, 0, 0, 0],  // Soft & anti-frizz (no hold)
-      [1, 2, 0, 3, 0, 0, 0, 0, 1],  // Light & flexible
-      [2, 1, 1, 1, 0, 0, 0, 0, 3],  // Medium
-      [0, 0, 2, 0, 3, 3, 3, 3, 0]   // Strong all-day
+      [0, 4, 0, 2, 0, 0, 0, 0, 0],  // Soft & anti-frizz (no hold)
+      [1, 2, 0, 4, 0, 0, 0, 0, 0],  // Light & flexible
+      [1, 1, 3, 1, 0, 0, 3, 0, 2],  // Medium — Mousse (wet/volume), Dust (matte), FPMix (wet look)
+      [2, 0, 1, 0, 4, 3, 2, 3, 0]   // Strong — Clay, Hairspray, FPParf
     ],
-    // Q4: Finish — Natural / Matte / Wet look / High shine
+    // Q4: Finish — Natural(0) / Matte(1) / Wet look(2) / High shine(3)
     [
-      [0, 3, 2, 2, 0, 0, 0, 0, 0],  // Natural
-      [0, 0, 0, 2, 3, 0, 3, 0, 0],  // Matte
-      [2, 0, 0, 0, 0, 3, 0, 3, 3],  // Wet look
-      [3, 0, 0, 0, 0, 1, 0, 1, 0]   // High shine
+      [0, 3, 2, 2, 1, 0, 0, 0, 0],  // Natural → Moisturizing Fixer, Mousse, Grooming Fixer
+      [0, 0, 0, 1, 3, 0, 5, 0, 0],  // Matte → Dust(5) wins lighter hold, Clay(3) wins strong hold
+      [2, 0, 1, 0, 0, 3, 0, 3, 3],  // Wet look → Hairspray, FPParf, FPMix, ClassicPomade
+      [4, 0, 0, 0, 0, 1, 0, 1, 0]   // High shine → Classic Pomade
     ],
-    // Q5: Concern — Dryness & frizzy / Volume / Styling
+    // Q5: Concern — Dryness(0) / Oily(1) / Volume(2) / Styling(3)
+    // Dry hair: heavily favour Moisturizing Fixer, avoid Clay/Dust
+    // Oily hair: Grooming Fixer (light), Dust (medium matte), Clay (strong matte/natural)
+    // Volume + lighter hold → Dust wins; Volume + stronger hold → Clay wins (Q3 decides)
     [
-      [0, 3, 1, 2, 0, 0, 0, 0, 0],  // Dryness & frizzy
-      [0, 0, 3, 0, 0, 2, 1, 0, 0],  // Volume
-      [1, 0, 0, 1, 3, 1, 2, 2, 2]   // Styling
+      [0, 7, 2, 1, 0, 0, 0, 0, 0],  // Dryness & frizzy — MoisturizingFixer dominates
+      [0, 0, 0, 4, 3, 0, 3, 0, 0],  // Oily & greasy — Grooming Fixer, Clay, Dust
+      [0, 0, 2, 0, 3, 3, 3, 0, 0],  // Volume — Clay/Dust/Hairspray, Mousse (Q3 hold decides Clay vs Dust)
+      [1, 0, 0, 1, 2, 1, 1, 2, 2]   // Styling — Pomades, Clay, Hairspray
     ]
   ];
 
@@ -414,7 +420,7 @@
   function buildWhy(productIndex, answers) {
     const holdLabels = ['no hold needed', 'a light flexible hold', 'medium hold', 'strong all-day hold'];
     const finishLabels = ['a natural finish', 'a matte finish', 'a wet look', 'high shine'];
-    const concernLabels = ['keeping hair moisturised and frizz-free', 'adding volume', 'styling and control'];
+    const concernLabels = ['keeping hair moisturised and frizz-free', 'controlling oiliness', 'adding volume', 'styling and control'];
 
     const hold = holdLabels[answers[2]] || 'the right hold';
     const finish = finishLabels[answers[3]] || 'the right finish';
