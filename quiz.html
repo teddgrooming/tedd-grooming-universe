@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Tedd Product</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0a0a0a;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+  }
+
+  .card {
+    background: #141410;
+    border: 0.5px solid #2e2c24;
+    border-radius: 20px;
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .wordmark {
+    text-align: center;
+    font-size: 11px;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .prog-track {
+    background: #1e1e1a;
+    border-radius: 99px;
+    height: 3px;
+    width: 100%;
+  }
+  .prog-fill {
+    background: #b5a97a;
+    border-radius: 99px;
+    height: 3px;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  .prog-label {
+    font-size: 11px;
+    color: #fff;
+    text-align: right;
+    margin-top: 4px;
+  }
+
+  .question-text {
+    font-size: 17px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.4;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .opt {
+    background: #0e0e0b;
+    border: 0.5px solid #2e2c24;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    touch-action: manipulation;
+    transition: border-color 0.15s, background 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .opt.selected {
+    border-color: #b5a97a;
+    background: #1c1a12;
+    color: #fff;
+  }
+  .opt:hover:not(.selected) { border-color: #4a4438; }
+
+  .btn {
+    background: #b5a97a;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 13px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: 0.3px;
+    touch-action: manipulation;
+    transition: opacity 0.15s;
+  }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .btn:not(:disabled):hover { opacity: 0.88; }
+
+  .intro-headline {
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .intro-sub {
+    font-size: 14px;
+    color: #aaa;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .result-badge {
+    font-size: 10px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .result-name {
+    font-size: 22px;
+    font-weight: 500;
+    color: #b5a97a;
+    margin-top: 4px;
+    line-height: 1.2;
+  }
+  .result-detail {
+    font-size: 13px;
+    color: #fff;
+    margin-top: 4px;
+  }
+  .scent-pill {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 99px;
+    margin-top: 8px;
+  }
+  .result-divider {
+    height: 0.5px;
+    background: #222;
+  }
+  .why-label {
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .why-text {
+    font-size: 14px;
+    color: #fff;
+    line-height: 1.6;
+    margin-top: 6px;
+  }
+
+  .screen { display: none; }
+  .screen.active { display: flex; flex-direction: column; gap: 20px; }
+
+  .card { transition: opacity 0.2s ease; }
+  .card.fading { opacity: 0; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- Intro screen -->
+  <div id="screen-intro" class="screen active">
+    <div class="wordmark">· TEDD GROOMING ·</div>
+    <div>
+      <p class="intro-headline">Find your perfect product</p>
+      <p class="intro-sub" style="margin-top:10px">5 quick questions. We'll match you to the right Tedd product for your hair.</p>
+    </div>
+    <button class="btn" id="btn-start">Start →</button>
+  </div>
+
+  <!-- Question screen -->
+  <div id="screen-question" class="screen">
+    <div class="wordmark">· TEDD GROOMING ·</div>
+    <div>
+      <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+      <p class="prog-label" id="prog-label">1 of 5</p>
+    </div>
+    <p class="question-text" id="question-text"></p>
+    <div class="options" id="options-container"></div>
+    <button class="btn" id="btn-next" disabled>Next →</button>
+  </div>
+
+  <!-- Result screen -->
+  <div id="screen-result" class="screen">
+    <div class="wordmark">· TEDD GROOMING ·</div>
+    <div id="result-content"></div>
+    <button class="btn" id="btn-retake">Retake quiz</button>
+  </div>
+
+</div>
+<script>
+  // JS added in Task 2
+</script>
+</body>
+</html>
