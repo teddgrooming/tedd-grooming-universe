@@ -3,9 +3,15 @@
   "configurations": [
     {
       "name": "quiz",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "3001"],
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3001", "."],
       "port": 3001
+    },
+    {
+      "name": "Tedd Grooming Shop",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3002", "--directory", "C:/Claude/Game"],
+      "port": 3002
     }
   ]
 }

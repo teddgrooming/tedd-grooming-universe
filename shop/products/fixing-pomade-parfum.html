@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixing Pomade Parfum — Tedd Grooming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root { --accent:#3498db; --glow:rgba(52,152,219,0.18); --badge-bg:rgba(52,152,219,0.08); --badge-border:rgba(52,152,219,0.3); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <img src="../images/fe36d06e-9b14-4659-8582-09d3633e5830.png" alt="Tedd Grooming" class="nav-logo">
+  <a href="../index.html" class="nav-back">← All Products</a>
+</nav>
+
+<div class="product-detail">
+  <div class="product-hero">
+    <div class="product-img-wrap">
+      <div class="product-glow-bg"></div>
+      <img id="hero-img" src="../images/dad7d25c-169d-4307-a8ff-1471ea61b3c1.png" alt="Fixing Pomade Parfum" class="product-hero-img">
+    </div>
+    <div class="product-info">
+      <p class="product-category">Fixing Pomade</p>
+      <h1 class="product-name">Fixing Pomade Parfum</h1>
+      <div class="product-badges">
+        <span class="badge badge-hold">Strong Hold</span>
+        <span class="badge badge-scent">Parfum Scent</span>
+      </div>
+      <p class="size-label">Select Size</p>
+      <div class="size-options">
+        <button class="size-btn" onclick="setSize('../images/9c1d3ca0-a922-44d0-9c43-980a766fab7d.png', this)">60g</button>
+        <button class="size-btn active" onclick="setSize('../images/dad7d25c-169d-4307-a8ff-1471ea61b3c1.png', this)">150g</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-heading">Benefits</p>
+    <div class="benefits-list">
+      <div class="benefit-item"><div class="benefit-dot"></div><span class="benefit-text">Strong hold that controls even the thickest, most stubborn hair</span></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><span class="benefit-text">Vitamin &amp; Protein formula for healthy, manageable hair every day</span></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><span class="benefit-text">Smooth, easy application with a clean natural finish</span></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><span class="benefit-text">Premium parfum scent for lasting all-day confidence</span></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-heading">How to Use</p>
+    <div class="steps-list">
+      <div class="step-item"><span class="step-num">1</span><span class="step-text">Scoop a dime-sized amount onto your fingertips</span></div>
+      <div class="step-item"><span class="step-num">2</span><span class="step-text">Warm between palms until softened and workable</span></div>
+      <div class="step-item"><span class="step-num">3</span><span class="step-text">Apply to damp or dry hair and distribute evenly</span></div>
+      <div class="step-item"><span class="step-num">4</span><span class="step-text">Style into your desired look and finish</span></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-heading">Key Ingredients</p>
+    <div class="tags-list">
+      <span class="tag">Petrolatum</span>
+      <span class="tag">Beeswax</span>
+      <span class="tag">Castor Oil</span>
+      <span class="tag">Vitamin E</span>
+      <span class="tag">Protein Complex</span>
+      <span class="tag">Lanolin</span>
+      <span class="tag">Fragrance (Parfum)</span>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-heading">Recommended Hair Type</p>
+    <div class="tags-list">
+      <span class="tag hair">Thick</span>
+      <span class="tag hair">Normal</span>
+      <span class="tag hair">Wavy</span>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-heading">Reviews</p>
+    <div class="reviews-list">
+      <div class="review-card">
+        <div class="review-header"><span class="reviewer-name">Luqman A.</span><span class="stars">★★★★★</span></div>
+        <p class="review-text">Strong hold that actually works. The parfum scent is really masculine and clean. Perfect everyday pomade.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header"><span class="reviewer-name">Haikal M.</span><span class="stars">★★★★☆</span></div>
+        <p class="review-text">Great pomade. Easy to apply and lasts through workouts without losing its hold.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header"><span class="reviewer-name">Zarif S.</span><span class="stars">★★★★★</span></div>
+        <p class="review-text">My everyday pomade now. The 150g size is amazing value and the scent is incredible.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <img src="../images/fe36d06e-9b14-4659-8582-09d3633e5830.png" alt="Tedd Grooming" class="footer-logo">
+  <p>© 2025 Tedd Grooming Company. All rights reserved.</p>
+</footer>
+
+<script>
+  function setSize(src, btn) {
+    document.getElementById('hero-img').style.opacity = '0';
+    setTimeout(() => {
+      document.getElementById('hero-img').src = src;
+      document.getElementById('hero-img').style.opacity = '1';
+    }, 200);
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
