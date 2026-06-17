@@ -290,6 +290,7 @@
   function reset() {
     currentQ = 0;
     answers = new Array(QUESTIONS.length).fill(null);
+    progFill.style.width = '0%';
     renderQuestion(0);
     showScreen('question');
   }
