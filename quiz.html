@@ -294,8 +294,57 @@
     showScreen('question');
   }
 
-  // Stubs — implemented in Tasks 3 & 4
-  function computeScores(answers) { return new Array(9).fill(0); }
+  // Weight table: WEIGHTS[questionIndex][optionIndex] = [p0,p1,p2,p3,p4,p5,p6,p7,p8]
+  // Products: 0=ClassicPomade 1=MoisturizingFixer 2=HairMousse 3=GroomingFixer
+  //           4=StylingClay 5=Hairspray 6=MattifyingDust 7=FixingPomadeParf 8=FixingPomadeMix
+  const WEIGHTS = [
+    // Q1: Hair thickness — Thin / Medium / Thick
+    [
+      [1, 2, 0, 2, 0, 0, 0, 0, 1],  // Thin
+      [1, 1, 1, 1, 1, 1, 1, 1, 1],  // Medium
+      [0, 0, 2, 0, 3, 2, 3, 2, 1]   // Thick
+    ],
+    // Q2: Natural behaviour — Straight & smooth / Wavy & frizzy / Curly or coily
+    [
+      [2, 0, 0, 1, 1, 1, 1, 2, 2],  // Straight & smooth
+      [0, 2, 1, 2, 1, 0, 0, 0, 1],  // Wavy & a bit frizzy
+      [0, 3, 2, 1, 0, 0, 0, 0, 0]   // Curly or coily
+    ],
+    // Q3: Hold — Soft & anti-frizz / Light & flexible / Medium / Strong all-day
+    [
+      [0, 3, 0, 2, 0, 0, 0, 0, 0],  // Soft & anti-frizz (no hold)
+      [1, 2, 0, 3, 0, 0, 0, 0, 1],  // Light & flexible
+      [2, 1, 1, 1, 0, 0, 0, 0, 3],  // Medium
+      [0, 0, 2, 0, 3, 3, 3, 3, 0]   // Strong all-day
+    ],
+    // Q4: Finish — Natural / Matte / Wet look / High shine
+    [
+      [0, 3, 2, 2, 0, 0, 0, 0, 0],  // Natural
+      [0, 0, 0, 2, 3, 0, 3, 0, 0],  // Matte
+      [2, 0, 0, 0, 0, 3, 0, 3, 3],  // Wet look
+      [3, 0, 0, 0, 0, 1, 0, 1, 0]   // High shine
+    ],
+    // Q5: Concern — Dryness & frizzy / Volume / Styling
+    [
+      [0, 3, 1, 2, 0, 0, 0, 0, 0],  // Dryness & frizzy
+      [0, 0, 3, 0, 0, 2, 1, 0, 0],  // Volume
+      [1, 0, 0, 1, 3, 1, 2, 2, 2]   // Styling
+    ]
+  ];
+
+  function computeScores(answers) {
+    const scores = new Array(9).fill(0);
+    answers.forEach((optIndex, qIndex) => {
+      if (optIndex === null) return;
+      const deltas = WEIGHTS[qIndex][optIndex];
+      deltas.forEach((delta, productIndex) => {
+        scores[productIndex] += delta;
+      });
+    });
+    return scores;
+  }
+
+  // Stub — implemented in Task 4
   function showResult(scores) { showScreen('result'); }
 
   // Event listeners
