@@ -27,11 +27,11 @@ A 5-question hair profile quiz that recommends the best Tedd Grooming product fo
 
 | # | Question | Options |
 |---|---|---|
-| 1 | How would you describe your hair thickness? | Fine / Medium / Thick |
+| 1 | How would you describe your hair thickness? | Thin / Medium / Thick |
 | 2 | How does your hair behave naturally? | Straight & smooth / Wavy & a bit frizzy / Curly or coily |
-| 3 | What kind of hold do you want? | Light & flexible / Medium — firm by end of day / Strong all-day hold |
-| 4 | What finish do you prefer? | Natural matte / Slight shine / High shine / Wet look |
-| 5 | What's your biggest hair concern? | Dryness / Frizz / Hair staying in place / Volume |
+| 3 | What kind of hold do you want? | Soft & anti-frizz (no hold) / Light & flexible / Medium — firm by end of day / Strong all-day hold |
+| 4 | What finish do you prefer? | Natural / Matte / Wet look / High shine |
+| 5 | What's your biggest hair concern? | Dryness & frizzy / Volume / Styling |
 
 Each answer carries weighted scores toward each product. Highest total score at the end wins.
 
