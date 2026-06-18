@@ -43,48 +43,6 @@
       opacity: 1 !important;
     }
 
-    /* === PRODUCT IMAGE SCENES === */
-    .card-img-scene {
-      position: relative;
-      width: calc(100% + 2.5rem);
-      margin-top: -2rem;
-      margin-left: -1.25rem;
-      margin-right: -1.25rem;
-      margin-bottom: 1.4rem;
-      border-radius: 14px 14px 0 0;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      height: 200px;
-      padding-bottom: 12px;
-      /* force GPU compositing layer — fixes Samsung rendering */
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-    }
-    .card-img-scene .card-img {
-      margin-bottom: 0;
-      /* brightness boost compensates for Samsung AMOLED dimming; no drop-shadow to avoid compositing issues */
-      -webkit-filter: brightness(1.12) !important;
-      filter: brightness(1.12) !important;
-    }
-    @media (max-width: 520px) {
-      .card-img-scene {
-        width: calc(100% + 1.5rem);
-        margin-top: -1rem;
-        margin-left: -0.75rem;
-        margin-right: -0.75rem;
-        height: 160px;
-        padding-bottom: 8px;
-      }
-    }
-
-    /* All products — shared rock scene background */
-    .scene--clay, .scene--mousse, .scene--fixer,
-    .scene--pomade-classic, .scene--pomade-parfum, .scene--pomade-mixfruit,
-    .scene--moisturizing, .scene--hairspray, .scene--dust {
-      background: url('images/scene-background.png') center center / cover no-repeat;
-    }
   </style>
 </head>
 <body>
@@ -107,7 +65,7 @@
 
   <!-- Styling Clay -->
   <a class="card" href="products/styling-clay.html"     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.18);--badge-bg:rgba(200,168,75,0.18);--badge-border:rgba(200,168,75,0.6); border-color:#c8a84b;">
-    <div class="card-img-scene scene--clay"><img src="images/styling-clay-60g.png" alt="Firm Hold Styling Clay" class="card-img"></div>
+    <img src="images/styling-clay-60g.png" alt="Firm Hold Styling Clay" class="card-img">
     <div class="card-content">
       <p class="card-name">Styling Clay</p>
       <p class="card-meta">Firm Hold · Natural Finish</p>
@@ -121,7 +79,7 @@
 
   <!-- Hair Mousse -->
   <a class="card" href="products/hair-mousse.html"     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-color:#c8a84b;">
-    <div class="card-img-scene scene--mousse"><img src="images/hair-mousse-160ml.png" alt="Hair Mousse" class="card-img"></div>
+    <img src="images/hair-mousse-160ml.png" alt="Hair Mousse" class="card-img">
     <div class="card-content">
       <p class="card-name">Hair Mousse</p>
       <p class="card-meta">Medium Hold · Wet Finish</p>
@@ -134,7 +92,7 @@
 
   <!-- Grooming Fixer -->
   <a class="card" href="products/grooming-fixer.html"     style="--accent:#27ae60;--glow:rgba(39,174,96,0.18);--badge-bg:rgba(39,174,96,0.18);--badge-border:rgba(39,174,96,0.6); border-color:#c8a84b;">
-    <div class="card-img-scene scene--fixer"><img src="images/grooming-fixer-120ml.png" alt="Grooming Fixer" class="card-img"></div>
+    <img src="images/grooming-fixer-120ml.png" alt="Grooming Fixer" class="card-img">
     <div class="card-content">
       <p class="card-name">Grooming Fixer</p>
       <p class="card-meta">Light Hold · Natural Finish</p>
@@ -148,7 +106,7 @@
 
   <!-- Classic Pomade -->
   <a class="card" href="products/pomade-controlhold.html"     style="--accent:#c0392b;--glow:rgba(192,57,43,0.18);--badge-bg:rgba(192,57,43,0.18);--badge-border:rgba(192,57,43,0.6); border-color:#c8a84b;">
-    <div class="card-img-scene scene--pomade-classic"><img src="images/pomade-classic-60g.png" alt="Classic Pomade" class="card-img"></div>
+    <img src="images/pomade-classic-60g.png" alt="Classic Pomade" class="card-img">
     <div class="card-content">
       <p class="card-name">Classic Pomade</p>
       <p class="card-meta">Control Hold · High Shine</p>
@@ -162,7 +120,7 @@
 
   <!-- Fixing Pomade Parfum -->
   <a class="card" href="products/fixing-pomade-parfum.html"     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-color:#c8a84b;">
-    <div class="card-img-scene scene--pomade-parfum"><img src="images/pomade-fiber-parfum-60g.png" alt="Fixing Pomade Parfum" class="card-img"></div>
+    <img src="images/pomade-fiber-parfum-60g.png" alt="Fixing Pomade Parfum" class="card-img">
     <div class="card-content">
       <p class="card-name">Fixing Pomade Parfum</p>
       <p class="card-meta">Strong Hold · Medium Shine</p>
@@ -176,7 +134,7 @@
 
   <!-- Fixing Pomade Mixfruit -->
   <a class="card" href="products/fixing-pomade-mixfruit.html"     style="--accent:#e67e22;--glow:rgba(230,126,34,0.18);--badge-bg:rgba(230,126,34,0.18);--badge-border:rgba(230,126,34,0.6); border-color:#c8a84b;">
-    <div class="card-img-scene scene--pomade-mixfruit"><img src="images/pomade-fiber-mixfruit-60g.png" alt="Fixing Pomade Mixfruit" class="card-img"></div>
+    <img src="images/pomade-fiber-mixfruit-60g.png" alt="Fixing Pomade Mixfruit" class="card-img">
     <div class="card-content">
       <p class="card-name">Fixing Pomade Mixfruit</p>
       <p class="card-meta">Medium Hold · Medium Shine</p>
@@ -190,7 +148,7 @@
 
   <!-- Moisturizing Fixer -->
   <a class="card" href="products/moisturizing-fixer.html"     style="--accent:#c4527a;--glow:rgba(196,82,122,0.18);--badge-bg:rgba(196,82,122,0.18);--badge-border:rgba(196,82,122,0.6); border-color:#c8a84b;">
-    <div class="card-img-scene scene--moisturizing"><img src="images/moisturizing-fixer-150ml.png" alt="Moisturizing Fixer" class="card-img"></div>
+    <img src="images/moisturizing-fixer-150ml.png" alt="Moisturizing Fixer" class="card-img">
     <div class="card-content">
       <p class="card-name">Moisturizing Fixer</p>
       <p class="card-meta">Silky · Wet Finish</p>
@@ -203,7 +161,7 @@
 
   <!-- Hair Spray -->
   <a class="card" href="products/hairspray.html"     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-color:#c8a84b;">
-    <div class="card-img-scene scene--hairspray"><img src="images/hairspray-420ml.png" alt="Hair Spray" class="card-img"></div>
+    <img src="images/hairspray-420ml.png" alt="Hair Spray" class="card-img">
     <div class="card-content">
       <p class="card-name">Hair Spray</p>
       <p class="card-meta">Strong Hold · High Shine</p>
@@ -216,7 +174,7 @@
 
   <!-- Mattifying Dust -->
   <a class="card" href="products/mattifying-dust.html"     style="--accent:#e2d4a8;--glow:rgba(226,212,168,0.18);--badge-bg:rgba(226,212,168,0.18);--badge-border:rgba(226,212,168,0.6); border-color:#c8a84b;">
-    <div class="card-img-scene scene--dust"><img src="images/mattifying-dust-25g.png" alt="Mattifying Dust" class="card-img"></div>
+    <img src="images/mattifying-dust-25g.png" alt="Mattifying Dust" class="card-img">
     <div class="card-content">
       <p class="card-name">Mattifying Dust</p>
       <p class="card-meta">Firm Hold · Matte Finish</p>

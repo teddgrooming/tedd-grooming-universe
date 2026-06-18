@@ -189,25 +189,13 @@ a, button { -webkit-tap-highlight-color: transparent; }
   --mouse-y: 50%;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  background: radial-gradient(240px circle at var(--mouse-x) var(--mouse-y), var(--glow), transparent 75%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
 /* Hover only on real pointer devices — prevents sticky hover on touch */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     transform: translateY(-10px);
     border-color: var(--accent);
-    box-shadow: 0 16px 48px var(--glow), 0 0 0 0.5px var(--accent);
+    box-shadow: 0 0 0 0.5px var(--accent);
   }
-  .card:hover::before { opacity: 1; }
   .card:hover .card-img { transform: scale(1.07) translateY(-5px); }
 }
 
