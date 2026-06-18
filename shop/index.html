@@ -55,7 +55,7 @@
   <div class="hero-divider"></div>
   <div style="display:flex;justify-content:center;gap:14px;margin-top:2rem;">
     <a href="#products" style="font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;text-decoration:none;color:#c8a84b;padding:9px 24px;border:1px solid #c8a84b;border-radius:2px;display:inline-flex;align-items:center;gap:8px;">Signature</a>
-    <a href="#" onclick="return false;" style="font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;text-decoration:none;color:#d0d8e0;padding:9px 24px;border:1px solid #d0d8e0;border-radius:2px;display:inline-flex;align-items:center;gap:8px;cursor:default;pointer-events:none;">Essential <span style="font-family:'Inter',sans-serif;font-size:0.5rem;letter-spacing:0.12em;color:#d0d8e0;background:#1a1a1a;border:1px solid #d0d8e0;border-radius:20px;padding:2px 7px;text-transform:uppercase;">Coming Soon</span></a>
+    <a href="#" onclick="return false;" style="font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;text-decoration:none;color:#e8edf2;padding:9px 24px;border:2px solid #e8edf2;border-radius:2px;display:inline-flex;align-items:center;gap:8px;cursor:default;pointer-events:none;">Essential <span style="font-family:'Inter',sans-serif;font-size:0.5rem;letter-spacing:0.12em;color:#e8edf2;background:#1a1a1a;border:1px solid #e8edf2;border-radius:20px;padding:2px 7px;text-transform:uppercase;">Coming Soon</span></a>
   </div>
 </section>
 
@@ -209,8 +209,20 @@
   }
 
   document.querySelectorAll('.card').forEach(card => {
+    // Read accent color from hardcoded inline border-color (works on all browsers)
+    var accent = card.style.borderColor || '#888';
+
+    // Permanent glow div — bottom ambient light, no CSS vars needed
+    var glow = document.createElement('div');
+    glow.style.cssText = 'position:absolute;inset:0;border-radius:16px;pointer-events:none;z-index:0;'
+      + 'background:radial-gradient(ellipse 85% 55% at 50% 115%,' + accent + '44' + ',transparent 70%);';
+    card.insertBefore(glow, card.firstChild);
+
+    // Permanent box-shadow
+    card.style.boxShadow = '0 0 22px ' + accent + '55' + ', 0 4px 18px ' + accent + '33';
+
     card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
+      var r = card.getBoundingClientRect();
       card.style.setProperty('--mouse-x', (e.clientX - r.left) + 'px');
       card.style.setProperty('--mouse-y', (e.clientY - r.top) + 'px');
     });
