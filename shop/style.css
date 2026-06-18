@@ -256,11 +256,17 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .card:hover .card-img { transform: scale(1.07) translateY(-5px); }
 }
 
-/* Touch tap feedback */
+/* Touch — permanent glow + tap feedback */
 @media (hover: none) {
+  .card {
+    box-shadow: 0 0 22px var(--glow), 0 4px 18px var(--glow);
+  }
+  .card::before {
+    opacity: 1;
+    background: radial-gradient(ellipse 80% 60% at 50% 110%, var(--glow), transparent 70%);
+  }
   .card:active {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 0.5px var(--accent);
+    box-shadow: 0 0 32px var(--glow), 0 0 0 0.5px var(--accent);
   }
 }
 
