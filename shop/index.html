@@ -37,8 +37,8 @@
 
     /* Logo - default for iOS/desktop */
     .nav-logo {
-      -webkit-filter: brightness(0) invert(1) !important;
-      filter: brightness(0) invert(1) !important;
+      -webkit-filter: invert(1) !important;
+      filter: invert(1) !important;
       opacity: 1 !important;
     }
   </style>
@@ -220,7 +220,7 @@
     // Permanent bottom glow div — no CSS vars, works on Samsung
     var glowEl = document.createElement('div');
     glowEl.style.cssText = 'position:absolute;inset:0;border-radius:16px;pointer-events:none;z-index:0;'
-      + 'background:radial-gradient(ellipse 90% 60% at 50% 115%,rgba('+r+','+g+','+b+',0.45),transparent 68%);';
+      + 'background:radial-gradient(ellipse 80% 70% at 50% 38%,rgba('+r+','+g+','+b+',0.38),transparent 70%);';
     card.insertBefore(glowEl, card.firstChild);
 
     // Permanent box-shadow
