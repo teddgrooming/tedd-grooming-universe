@@ -52,7 +52,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 .nav-logo {
   height: 128px;
-  filter: invert(1);
+  filter: brightness(0) invert(1);
   opacity: 1;
 }
 
