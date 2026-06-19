@@ -214,7 +214,7 @@
 
   .link-btn:hover .icon { transform: scale(1.1); }
 
-  .link-btn .label { flex: 1; }
+  .link-btn .label { flex: 1; text-transform: uppercase; }
   .link-btn .arrow { font-size: 14px; color: #333; }
 
   /* Social hover colors */
@@ -227,8 +227,54 @@
   .btn-facebook:hover { border-color: rgba(24,119,242,0.5); background: rgba(24,119,242,0.08); box-shadow: 0 8px 30px rgba(24,119,242,0.15); }
   .btn-facebook .icon { background: rgba(24,119,242,0.1); }
 
+  .btn-youtube:hover { border-color: rgba(255,0,0,0.5); background: rgba(255,0,0,0.08); box-shadow: 0 8px 30px rgba(255,0,0,0.15); }
+  .btn-youtube .icon { background: rgba(255,0,0,0.1); }
+
+  .btn-whatsapp:hover { border-color: rgba(37,211,102,0.5); background: rgba(37,211,102,0.08); box-shadow: 0 8px 30px rgba(37,211,102,0.15); }
+  .btn-whatsapp .icon { background: rgba(37,211,102,0.1); }
+
   .btn-website:hover  { border-color: rgba(200,168,75,0.5); background: rgba(200,168,75,0.08); box-shadow: 0 8px 30px rgba(200,168,75,0.15); }
   .btn-website .icon  { background: rgba(200,168,75,0.1); }
+
+  .btn-catalog:hover  { border-color: rgba(200,168,75,0.5); background: rgba(200,168,75,0.08); box-shadow: 0 8px 30px rgba(200,168,75,0.2); }
+  .icon-catalog       { background: radial-gradient(circle at 30% 30%, rgba(200,168,75,0.28), rgba(200,168,75,0.06)); }
+  .catalog-spark      { animation: catalogTwinkle 2s ease-in-out infinite; transform-origin: center; }
+
+  @keyframes catalogTwinkle {
+    0%, 100% { opacity: 0.3; }
+    50%      { opacity: 1; }
+  }
+
+  .icon-quiz    { background: radial-gradient(circle at 30% 30%, rgba(29,212,196,0.28), rgba(29,212,196,0.06)); }
+  .quiz-spark   { animation: quizTwinkle 1.8s ease-in-out infinite; transform-origin: center; }
+  .quiz-spark:nth-child(2) { animation-delay: 0.3s; }
+  .quiz-spark:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes quizTwinkle {
+    0%, 100% { opacity: 0.25; transform: translateY(0); }
+    50%      { opacity: 1; transform: translateY(-1.5px); }
+  }
+
+  .icon-game   { background: radial-gradient(circle at 30% 30%, rgba(200,168,75,0.28), rgba(200,168,75,0.06)); }
+  .game-spark  { animation: gameTwinkle 1.8s ease-in-out infinite; transform-origin: center; }
+  .game-spark:nth-child(4)  { animation-delay: 0.2s; }
+  .game-spark:nth-child(5)  { animation-delay: 0.4s; }
+  .game-spark:nth-child(6)  { animation-delay: 0.6s; }
+  .game-spark:nth-child(7)  { animation-delay: 0.8s; }
+  .game-spark:nth-child(8)  { animation-delay: 1s; }
+
+  @keyframes gameTwinkle {
+    0%, 100% { opacity: 0.25; }
+    50%      { opacity: 1; }
+  }
+
+  .draw-spark  { animation: drawTwinkle 1.8s ease-in-out infinite; transform-origin: center; }
+  .draw-spark:nth-child(5) { animation-delay: 0.3s; }
+
+  @keyframes drawTwinkle {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 1; }
+  }
 
   .btn-shopee:hover   { border-color: rgba(238,77,45,0.5); background: rgba(238,77,45,0.08); box-shadow: 0 8px 30px rgba(238,77,45,0.15); }
   .btn-shopee .icon   { background: rgba(238,77,45,0.1); }
@@ -248,108 +294,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
-
-  /* ── WhatsApp bubble ── */
-  .wa-bubble {
-    position: fixed;
-    bottom: 24px;
-    right: 20px;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-  }
-
-  .wa-tooltip {
-    background: #1a1a1a;
-    border: 1px solid rgba(37,211,102,0.25);
-    border-radius: 12px;
-    padding: 10px 14px;
-    font-size: 12px;
-    color: #ccc;
-    line-height: 1.5;
-    max-width: 200px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    animation: waPop 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
-    transform-origin: bottom right;
-  }
-
-  .wa-tooltip strong { color: #25d366; display: block; margin-bottom: 2px; }
-
-  .wa-tooltip::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    right: 22px;
-    width: 10px; height: 10px;
-    background: #1a1a1a;
-    border-right: 1px solid rgba(37,211,102,0.25);
-    border-bottom: 1px solid rgba(37,211,102,0.25);
-    transform: rotate(45deg);
-  }
-
-  @keyframes waPop {
-    from { opacity: 0; transform: scale(0.7); }
-    to   { opacity: 1; transform: scale(1); }
-  }
-
-  .wa-btn {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: #25d366;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.45);
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    animation: waBounce 2.5s 2s ease-in-out infinite;
-    position: relative;
-  }
-
-  .wa-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 28px rgba(37,211,102,0.6);
-  }
-
-  .wa-btn::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    border: 2px solid rgba(37,211,102,0.4);
-    animation: waRing 2s 2s ease-out infinite;
-  }
-
-  @keyframes waRing {
-    0%   { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(1.6); opacity: 0; }
-  }
-
-  @keyframes waBounce {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-6px); }
-  }
-
-  .wa-close {
-    position: absolute;
-    top: -6px; right: -6px;
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: #333;
-    border: none;
-    color: #aaa;
-    font-size: 11px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
   }
 
   /* ── Footer ── */
@@ -408,6 +352,13 @@
           <div class="label">Instagram</div>
         </a>
 
+        <a class="link-btn btn-youtube" href="https://www.youtube.com/@thegainculture" onclick="openApp(event,null,'intent://www.youtube.com/@thegainculture#Intent;package=com.google.android.youtube;scheme=https;end','https://www.youtube.com/@thegainculture')">
+          <div class="icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div class="label">YouTube</div>
+        </a>
+
         <a class="link-btn btn-facebook" href="https://www.facebook.com/teddgroomingcompany/" onclick="openApp(event,null,'intent://www.facebook.com/teddgroomingcompany#Intent;package=com.facebook.katana;scheme=https;end','https://www.facebook.com/teddgroomingcompany/')">
           <div class="icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -422,19 +373,30 @@
       <div class="section-label">Find Us</div>
       <div class="links">
 
-        <a class="link-btn btn-website" href="https://www.teddgrooming.com" target="_blank" rel="noopener noreferrer" onclick="handleWebsite(this)">
-          <div class="icon">🌐</div>
-          <div class="label">Website</div>
+        <a class="link-btn btn-whatsapp" href="https://wa.me/601164008983" onclick="openWhatsApp(event,'601164008983','https://wa.me/601164008983')">
+          <div class="icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          </div>
+          <div class="label">WhatsApp</div>
         </a>
 
         <a class="link-btn btn-shopee" href="https://shopee.com.my/teddgrooming" onclick="openApp(event,null,'intent://shopee.com.my/teddgrooming#Intent;package=com.shopee.my;scheme=https;end','https://shopee.com.my/teddgrooming')">
-          <div class="icon">🛍️</div>
+          <div class="icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#EE4D2D"><path d="M15.9414 17.9633c.229-1.879-.981-3.077-4.1758-4.0969-1.548-.528-2.277-1.22-2.26-2.1719.065-1.056 1.048-1.825 2.352-1.85a5.2898 5.2898 0 0 1 2.8838.89c.116.072.197.06.263-.039.09-.145.315-.494.39-.62.051-.081.061-.187-.068-.281-.185-.1369-.704-.4149-.983-.5319a6.4697 6.4697 0 0 0-2.5118-.514c-1.909.008-3.4129 1.215-3.5389 2.826-.082 1.1629.494 2.1078 1.73 2.8278.262.152 1.6799.716 2.2438.892 1.774.552 2.695 1.5419 2.478 2.6969-.197 1.047-1.299 1.7239-2.818 1.7439-1.2039-.046-2.2878-.537-3.1278-1.19l-.141-.11c-.104-.08-.218-.075-.287.03-.05.077-.376.547-.458.67-.077.108-.035.168.045.234.35.293.817.613 1.134.775a6.7097 6.7097 0 0 0 2.8289.727 4.9048 4.9048 0 0 0 2.0759-.354c1.095-.465 1.8029-1.394 1.9449-2.554zM11.9986 1.4009c-2.068 0-3.7539 1.95-3.8329 4.3899h7.6657c-.08-2.44-1.765-4.3899-3.8328-4.3899zm7.8516 22.5981-.08.001-15.7843-.002c-1.074-.04-1.863-.91-1.971-1.991l-.01-.195L1.298 6.2858a.459.459 0 0 1 .45-.494h4.9748C6.8448 2.568 9.1607 0 11.9996 0c2.8388 0 5.1537 2.5689 5.2757 5.7898h4.9678a.459.459 0 0 1 .458.483l-.773 15.5883-.007.131c-.094 1.094-.979 1.9769-2.0709 2.0059z"/></svg>
+          </div>
           <div class="label">Shopee</div>
         </a>
 
         <a class="link-btn btn-lazada" href="https://www.lazada.com.my/jtaoffmk/?q=All-Products&from=wangpu&langFlag=en&pageTypeId=2" target="_blank" rel="noopener noreferrer">
-          <div class="icon">🛒</div>
+          <div class="icon">
+            <img src="images/brand/lazada-icon.ico" alt="Lazada" width="20" height="20" style="border-radius:4px;">
+          </div>
           <div class="label">Lazada</div>
+        </a>
+
+        <a class="link-btn btn-website" href="https://www.teddgrooming.com" target="_blank" rel="noopener noreferrer" onclick="handleWebsite(this)">
+          <div class="icon">🌐</div>
+          <div class="label">Website</div>
         </a>
 
       </div>
@@ -447,25 +409,100 @@
   <div class="embed-wrapper">
 
     <a class="link-btn btn-catalog" href="shop/TEDD CATALOG.html">
-      <div class="icon" style="background:rgba(39,174,96,0.12);">📦</div>
+      <div class="icon icon-catalog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="catalogGradPage" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f0d68a"/>
+              <stop offset="100%" stop-color="#c8a84b"/>
+            </linearGradient>
+          </defs>
+          <!-- open magazine spread -->
+          <rect x="1.2" y="2" width="9.8" height="20" rx="1" fill="url(#catalogGradPage)"/>
+          <rect x="13" y="2" width="9.8" height="20" rx="1" fill="url(#catalogGradPage)" opacity="0.75"/>
+          <rect x="11.2" y="2" width="1.6" height="20" fill="#8a6f2e" opacity="0.5"/>
+          <!-- left page: photo block + text lines -->
+          <rect class="catalog-spark" x="2.6" y="3.4" width="7" height="6.4" rx="0.5" fill="#1a1a1a"/>
+          <rect x="2.6" y="11" width="7" height="0.9" rx="0.45" fill="#1a1a1a" opacity="0.6"/>
+          <rect x="2.6" y="12.6" width="5" height="0.9" rx="0.45" fill="#1a1a1a" opacity="0.6"/>
+          <rect x="2.6" y="14.6" width="7" height="0.7" rx="0.35" fill="#1a1a1a" opacity="0.35"/>
+          <rect x="2.6" y="16" width="7" height="0.7" rx="0.35" fill="#1a1a1a" opacity="0.35"/>
+          <rect x="2.6" y="17.4" width="4.5" height="0.7" rx="0.35" fill="#1a1a1a" opacity="0.35"/>
+          <!-- right page: text lines + photo block -->
+          <rect x="14.4" y="3.4" width="7" height="0.9" rx="0.45" fill="#1a1a1a" opacity="0.6"/>
+          <rect x="14.4" y="5" width="5" height="0.9" rx="0.45" fill="#1a1a1a" opacity="0.6"/>
+          <rect x="14.4" y="7" width="7" height="0.7" rx="0.35" fill="#1a1a1a" opacity="0.3"/>
+          <rect x="14.4" y="8.4" width="7" height="0.7" rx="0.35" fill="#1a1a1a" opacity="0.3"/>
+          <rect class="catalog-spark" x="14.4" y="10.4" width="7" height="9.4" rx="0.5" fill="#1a1a1a"/>
+        </svg>
+      </div>
       <div class="label">Product Catalog</div>
       <div class="arrow">›</div>
     </a>
 
     <a class="link-btn btn-quiz" href="TEDD QUIZ.html">
-      <div class="icon" style="background:rgba(29,212,196,0.12);">💡</div>
-      <div class="label">Hair Quiz</div>
+      <div class="icon icon-quiz">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <!-- hollow face -->
+          <path d="M7.2 11.2c0-3 1.9-5.3 4.8-5.3s4.8 2.3 4.8 5.3c0 3.4-1.6 6.6-3.4 8.6-.5.6-1.3.6-1.8 0-1.8-2-3.4-5.2-3.4-8.6z" stroke="#1dd4c4" stroke-width="1.3" fill="none"/>
+          <!-- slicked-back hair -->
+          <path d="M6.6 10.4c-.3-2.6.8-4.7 2.5-5.8C10 3.8 11 3.4 12 3.4s2 .4 2.9 1.2c1.7 1.1 2.8 3.2 2.5 5.8-1.3-1.6-3-2.5-3-2.5l1.6 2c-1.4-.7-2.9-.6-2.9-.6l1.1 1.6c-1.1-.3-2.2-.1-2.2-.1l.7 1.4c-.9-.1-1.7.2-1.7.2l.5 1.2c-.7 0-1.3.3-1.3.3l-.2-3.6c-1.1.3-2 1.1-2 1.1l.6-1.7c-.9.2-1.7.9-1.7.9l.6-1.6c-.8.3-1.5 1-1.5 1z" fill="#1dd4c4"/>
+          <!-- question marks -->
+          <text class="quiz-spark" x="2.5" y="7" font-size="6.5" font-weight="700" fill="#1dd4c4">?</text>
+          <text class="quiz-spark" x="17.5" y="6" font-size="5.5" font-weight="700" fill="#1dd4c4" opacity="0.8">?</text>
+          <text class="quiz-spark" x="18.5" y="16" font-size="5" font-weight="700" fill="#1dd4c4" opacity="0.6">?</text>
+        </svg>
+      </div>
+      <div class="label">Hair Quiz (Product Recommendation)</div>
       <div class="arrow">›</div>
     </a>
 
     <a class="link-btn btn-game" href="TEDD GAME.html">
-      <div class="icon" style="background:rgba(200,168,75,0.12);">🎮</div>
+      <div class="icon icon-game">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a84b" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <!-- head -->
+          <circle cx="12" cy="6" r="3.4"/>
+          <!-- smile -->
+          <path d="M10.3 6.7c.5.6 1 .8 1.7.8s1.2-.2 1.7-.8"/>
+          <!-- body / arms holding controller -->
+          <path d="M5.5 20c-.6-3 .6-5.6 2-6.8 1.2-1 2.6-1.5 4.5-1.5s3.3.5 4.5 1.5c1.4 1.2 2.6 3.8 2 6.8"/>
+          <path d="M9.2 16.2c-.8 0-1.4.4-1.8 1-.5.8-1 1.6-1.8 1.9-.7.3-1.1.9-.9 1.6"/>
+          <path d="M14.8 16.2c.8 0 1.4.4 1.8 1 .5.8 1 1.6 1.8 1.9.7.3 1.1.9.9 1.6"/>
+          <!-- handheld controller -->
+          <rect x="8.6" y="14.6" width="6.8" height="4.6" rx="1"/>
+          <circle class="game-spark" cx="13.6" cy="16.2" r="0.35" fill="#c8a84b"/>
+          <!-- floating shapes -->
+          <rect class="game-spark" x="1.6" y="9" width="2.6" height="2.6" rx="0.4"/>
+          <path class="game-spark" d="M19.6 4.4l1.4 2.4h-2.8z"/>
+          <circle class="game-spark" cx="3" cy="3.6" r="1.1"/>
+          <path class="game-spark" d="M19.4 17.6l1.2 1.2-1.2 1.2-1.2-1.2z"/>
+          <line class="game-spark" x1="20.4" y1="10.6" x2="22" y2="12.2"/>
+          <line class="game-spark" x1="22" y1="10.6" x2="20.4" y2="12.2"/>
+        </svg>
+      </div>
       <div class="label">Product Catcher Game</div>
       <div class="arrow">›</div>
     </a>
 
     <a class="link-btn btn-draw" href="TEDD LUCKY DRAW WINNERS.html">
-      <div class="icon" style="background:rgba(196,82,122,0.12);">🏆</div>
+      <div class="icon icon-draw">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <!-- leaderboard table -->
+          <rect x="1.5" y="3" width="21" height="18" rx="1.5" stroke="#c4527a" stroke-width="1.2" fill="none"/>
+          <line x1="1.5" y1="7.4" x2="22.5" y2="7.4" stroke="#c4527a" stroke-width="1"/>
+          <!-- rank circles -->
+          <circle class="draw-spark" cx="4.6" cy="11" r="1.3" fill="#c4527a"/>
+          <circle cx="4.6" cy="15" r="1.1" stroke="#c4527a" stroke-width="1" fill="none" opacity="0.7"/>
+          <circle cx="4.6" cy="19" r="1.1" stroke="#c4527a" stroke-width="1" fill="none" opacity="0.5"/>
+          <!-- name/score rows -->
+          <rect x="7.4" y="9.9" width="9.5" height="1.4" rx="0.7" fill="#c4527a"/>
+          <rect class="draw-spark" x="18.2" y="9.9" width="2.6" height="1.4" rx="0.7" fill="#c4527a"/>
+          <rect x="7.4" y="14" width="7.5" height="1.2" rx="0.6" fill="#c4527a" opacity="0.6"/>
+          <rect x="18.2" y="14" width="2.6" height="1.2" rx="0.6" fill="#c4527a" opacity="0.6"/>
+          <rect x="7.4" y="18" width="6" height="1.2" rx="0.6" fill="#c4527a" opacity="0.45"/>
+          <rect x="18.2" y="18" width="2.6" height="1.2" rx="0.6" fill="#c4527a" opacity="0.45"/>
+        </svg>
+      </div>
       <div class="label">Lucky Draw HOF</div>
       <div class="arrow">›</div>
     </a>
@@ -473,18 +510,6 @@
   </div>
 
   <div class="footer">© 2026 Tedd Grooming</div>
-
-  <!-- WhatsApp bubble -->
-  <div class="wa-bubble" id="waBubble">
-    <div class="wa-tooltip" id="waTooltip">
-      <strong>Chat with us!</strong>
-      How can we help you?
-      <button class="wa-close" onclick="dismissWa()" aria-label="Close">✕</button>
-    </div>
-    <a class="wa-btn" href="https://wa.me/601164008983" aria-label="WhatsApp Tedd Grooming" onclick="dismissWa();openWhatsApp(event,'601164008983','https://wa.me/601164008983')">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-    </a>
-  </div>
 
   <script>
     /* ── Electricity grid canvas ── */
@@ -605,18 +630,6 @@
     })();
 
     // WhatsApp bubble
-    const waTooltip = document.getElementById('waTooltip');
-    // Show tooltip after 3s, auto-hide after 8s
-    setTimeout(() => {
-      waTooltip.style.display = 'block';
-      setTimeout(() => { waTooltip.style.display = 'none'; }, 8000);
-    }, 3000);
-    waTooltip.style.display = 'none';
-
-    function dismissWa() {
-      waTooltip.style.display = 'none';
-    }
-
     function handleWebsite(el) {
       el.classList.add('loading');
       setTimeout(() => el.classList.remove('loading'), 4000);
