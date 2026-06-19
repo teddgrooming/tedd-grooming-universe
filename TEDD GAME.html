@@ -410,8 +410,8 @@ function endGame(){
   saveScore(score);items=[];popups=[];burstPts=[];
   updateTimerUI(0);
   paused=false;pauseBtn.style.display='none';
-  const reason=lives<=0?'No lives left!':'Time\'s up!';
-  ov.innerHTML=`<img class="ov-logo" src="shop/images/tedd-logo.png" alt="Tedd Grooming" onerror="this.style.display='none'" style="width:min(110px,35%)"><h1>${reason}</h1><p>Final score: <span style="font-size:clamp(18px,4vw,22px);color:#EF9F27;font-weight:600">${score}</span><br>Level ${level} reached. Nice grooming!</p><button id="play-btn">Play again</button>`;
+  const footer=score===0?'Bad Grooming!':'Nice grooming!';
+  ov.innerHTML=`<h1>Please Try Again!</h1><p>Final score: <span style="font-size:clamp(18px,4vw,22px);color:#EF9F27;font-weight:600">${score}</span><br>Level ${level} reached. ${footer}</p><button id="play-btn">Play again</button>`;
   ov.style.display='flex';
 }
 
