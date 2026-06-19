@@ -85,7 +85,7 @@ canvas{display:block;width:100%;border:0.5px solid rgba(255,255,255,0.08);border
 
 /* Mobile */
 @media(max-width:600px){
-  body{padding:8px 8px 16px}
+  body{padding:8px 8px 16px;padding-top:52px}
   #sb-panel{display:none}
   #mob-sb{display:block}
   #touch-hint{display:block}
@@ -121,7 +121,6 @@ canvas{display:block;width:100%;border:0.5px solid rgba(255,255,255,0.08);border
     <canvas id="gc" width="640" height="420"></canvas>
     <div id="touch-hint">Slide finger to move the bag</div>
     <div id="ov">
-      <img class="ov-logo" src="shop/images/tedd-logo.png" alt="Tedd Grooming" onerror="this.style.display='none'">
       <h1>Product Catcher</h1>
       <p>60 seconds. Catch products to score. Dodge bombs or lose a life!</p>
       <button id="play-btn">Play now</button>
@@ -149,6 +148,20 @@ canvas{display:block;width:100%;border:0.5px solid rgba(255,255,255,0.08);border
 <div id="legend"></div>
 
 <script>
+/* roundRect polyfill for Samsung Internet / older browsers */
+if(!CanvasRenderingContext2D.prototype.roundRect){
+  CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h,r){
+    r=Math.min(r,w/2,h/2);
+    this.beginPath();
+    this.moveTo(x+r,y);
+    this.lineTo(x+w-r,y);this.quadraticCurveTo(x+w,y,x+w,y+r);
+    this.lineTo(x+w,y+h-r);this.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    this.lineTo(x+r,y+h);this.quadraticCurveTo(x,y+h,x,y+h-r);
+    this.lineTo(x,y+r);this.quadraticCurveTo(x,y,x+r,y);
+    this.closePath();return this;
+  };
+}
+
 const canvas=document.getElementById('gc'),ctx=canvas.getContext('2d');
 const ov=document.getElementById('ov');
 const scoreEl=document.getElementById('sv'),livesEl=document.getElementById('hv'),levelEl=document.getElementById('lv'),comboEl=document.getElementById('cv');
@@ -400,7 +413,6 @@ function endGame(){
   const reason=lives<=0?'No lives left!':'Time\'s up!';
   ov.innerHTML=`<img class="ov-logo" src="shop/images/tedd-logo.png" alt="Tedd Grooming" onerror="this.style.display='none'" style="width:min(110px,35%)"><h1>${reason}</h1><p>Final score: <span style="font-size:clamp(18px,4vw,22px);color:#EF9F27;font-weight:600">${score}</span><br>Level ${level} reached. Nice grooming!</p><button id="play-btn">Play again</button>`;
   ov.style.display='flex';
-  document.getElementById('play-btn').addEventListener('click',startGame);
 }
 
 const pauseBtn=document.getElementById('pause-btn');
@@ -529,8 +541,11 @@ canvasCol.addEventListener('touchmove',e=>{
 canvasCol.addEventListener('touchend',e=>{
   for(const t of e.changedTouches){if(t.identifier===activeTouchId)activeTouchId=null;}
 },{passive:false});
+canvasCol.addEventListener('touchcancel',e=>{
+  for(const t of e.changedTouches){if(t.identifier===activeTouchId)activeTouchId=null;}
+},{passive:false});
 
-document.getElementById('play-btn').addEventListener('click',startGame);
+ov.addEventListener('click',e=>{if(e.target.id==='play-btn')startGame();});
 
 /* Init */
 ctx.fillStyle='#080808';ctx.fillRect(0,0,W,H);drawBag(ctx,W/2,H-30);
