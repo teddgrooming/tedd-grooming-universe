@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Draw Winners – Tedd Grooming</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: #0d0d0d;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 20px 60px;
+    color: #fff;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 36px;
+    text-align: center;
+  }
+
+  .trophy { font-size: 52px; margin-bottom: 16px; filter: drop-shadow(0 0 20px rgba(200,168,75,0.5)); }
+
+  .page-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .brand-name {
+    font-size: 12px;
+    color: #555;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  /* Grid */
+  .grid {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .month-card {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .month-card.has-winners { border-color: #333; }
+  .month-card.current-month { border-color: #c8a84b; }
+
+  .month-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #141414;
+    border-bottom: 1px solid #222;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .month-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .month-card.current-month .month-name { color: #c8a84b; }
+
+  .month-count {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 1px;
+  }
+
+  .month-card.has-winners .month-count { color: #666; }
+
+  .chevron {
+    font-size: 14px;
+    color: #333;
+    transition: transform 0.2s;
+  }
+
+  .month-card.open .chevron { transform: rotate(90deg); }
+
+  /* Slots */
+  .slots {
+    display: none;
+    flex-direction: column;
+  }
+
+  .month-card.open .slots { display: flex; }
+
+  .slot {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    border-bottom: 1px solid #1e1e1e;
+  }
+
+  .slot:last-child { border-bottom: none; }
+
+  .slot-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #333;
+    flex-shrink: 0;
+  }
+
+  .slot.filled .slot-num {
+    background: rgba(200,168,75,0.15);
+    color: #c8a84b;
+  }
+
+  .slot-info { flex: 1; min-width: 0; }
+
+  .slot-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .slot-prize {
+    font-size: 11px;
+    color: #555;
+    margin-top: 2px;
+  }
+
+  .slot.filled .slot-prize { color: #666; }
+
+  .slot-empty .slot-name {
+    font-size: 13px;
+    color: #2a2a2a;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* Back link */
+  .back-link {
+    margin-top: 44px;
+    font-size: 13px;
+    color: #444;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.15s;
+  }
+
+  .back-link:hover { color: #c8a84b; }
+</style>
+</head>
+<body>
+<a href="TEDD LINKS.html" style="position:fixed;top:16px;left:16px;z-index:9999;display:flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(20,20,20,0.85);border:1px solid rgba(255,255,255,0.1);border-radius:20px;color:#aaa;font-family:'Segoe UI',system-ui,sans-serif;font-size:13px;font-weight:600;text-decoration:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:color 0.15s,border-color 0.15s;" onmouseover="this.style.color='#fff';this.style.borderColor='rgba(200,168,75,0.5)'" onmouseout="this.style.color='#aaa';this.style.borderColor='rgba(255,255,255,0.1)'">← Back</a>
+
+  <div class="header">
+    <div class="trophy">🏆</div>
+    <div class="page-title">Lucky Draw Winners</div>
+    <div class="brand-name">Tedd Grooming</div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <a class="back-link" href="TEDD LINKS.html">← Back to Tedd Grooming</a>
+
+  <script>
+    // ─────────────────────────────────────────────────────────────
+    // ADD WINNERS HERE
+    // Key format: "YYYY-MMM" (e.g. "2025-Jan")
+    // Each month holds up to 5 winners: { name, prize }
+    // ─────────────────────────────────────────────────────────────
+    const winners = {
+      // "2025-Jan": [
+      //   { name: "Ahmad Razif",   prize: "Styling Clay 120g" },
+      //   { name: "Hakim Roslan",  prize: "Classic Pomade 150g" },
+      // ],
+      // "2025-Feb": [
+      //   { name: "Izzat Amir",    prize: "Hair Mousse 160ml" },
+      // ],
+    };
+
+    // Only show from June 2026 onwards
+    const ALL_MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const START_MONTH = 5; // June = index 5
+    const START_YEAR = 2026;
+    const MONTHS = ALL_MONTHS.slice(START_MONTH); // Jun to Dec
+
+    function toggleMonth(idx) {
+      const card = document.getElementById('card-' + idx);
+      card.classList.toggle('open');
+    }
+
+    function render() {
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+
+      MONTHS.forEach((mon, i) => {
+        const idx = START_MONTH + i;
+        const key = `${START_YEAR}-${mon}`;
+        const monthWinners = winners[key] || [];
+        const filled = monthWinners.length;
+        const isCurrentMonth = idx === new Date().getMonth() && START_YEAR === new Date().getFullYear();
+        const hasWinners = filled > 0;
+
+        const card = document.createElement('div');
+        card.className = 'month-card' +
+          (hasWinners ? ' has-winners' : '') +
+          (isCurrentMonth ? ' current-month' : '') +
+          (isCurrentMonth || hasWinners ? ' open' : '');
+        card.id = 'card-' + idx;
+
+        // Build 5 slots
+        let slotsHTML = '';
+        for (let i = 0; i < 5; i++) {
+          const w = monthWinners[i];
+          if (w) {
+            slotsHTML += `
+              <div class="slot filled">
+                <div class="slot-num">${i + 1}</div>
+                <div class="slot-info">
+                  <div class="slot-name">👑 ${w.name}</div>
+                  <div class="slot-prize">🎁 ${w.prize}</div>
+                </div>
+              </div>`;
+          } else {
+            slotsHTML += `
+              <div class="slot slot-empty">
+                <div class="slot-num">${i + 1}</div>
+                <div class="slot-info">
+                  <div class="slot-name">— not yet announced —</div>
+                </div>
+              </div>`;
+          }
+        }
+
+        card.innerHTML = `
+          <div class="month-header" onclick="toggleMonth(${idx})">
+            <span class="month-name">${mon} ${START_YEAR}</span>
+            <span class="month-count">${filled}/5 winners</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="slots">${slotsHTML}</div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    render();
+  </script>
+
+</body>
+</html>
